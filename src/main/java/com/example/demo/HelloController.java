@@ -4,6 +4,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 public class HelloController {
@@ -37,4 +43,32 @@ public class HelloController {
         return "The volume is: " + ret;
     }
 
+//    @PostMapping("/math/area/")
+//    public String getArea(){
+//        return "post";
+//    }
+
+    @PostMapping(value = "/math/area/", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String getMapParams(@RequestParam Map<String, String> formData) {
+
+        String type = formData.get("type");
+        String width = formData.get("width");
+        String length = formData.get("length");
+        String radius = formData.get("radius");
+        String ans = "invalid";
+
+        switch(type) {
+            case "circle":
+                ans = "vaild";
+                break;
+            case "rectangle":
+                ans = "valid";
+                break;
+            default:
+                return ans;
+        }
+
+        return ans;
+//        return formData.toString();
+    }
 }
