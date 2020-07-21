@@ -32,16 +32,18 @@ public class FlightController {
     public Flight getFlight(){
         Flight flight = new Flight();
         flight.departs = LocalDate.now();
-//        flight.tickets.passenger.firstName = "Some name";
-//        flight.tickets.passenger.lastName = "Some other name";
-//        flight.tickets.price = 200;
+
+
+        flight.tickets.passenger.firstName = "Some name";
+        flight.tickets.passenger.lastName = "Some other name";
+        flight.tickets.price = 200;
 
         return flight;
     }
 
     static class Flight {
          public LocalDate departs;
-         public Tickets tickets;
+         public Tickets tickets = new Tickets();
 
         public LocalDate getDeparts() {
             return departs;
@@ -61,7 +63,7 @@ public class FlightController {
     }
 
     static class Tickets{
-       public Person passenger;
+       public Person passenger = new Person();
        public int price;
 
         public com.example.demo.FlightController.Person getPassenger() {
